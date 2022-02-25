@@ -1,0 +1,792 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #F5F5F5;
+}
+
+.container {
+  width: 1370px;
+  margin: 0 auto;
+}
+
+.btn {
+  cursor: pointer;
+  transition: background .2s ease-in-out,
+              color .2s ease-in-out;
+}
+
+.btn:hover {
+  background: #B89EFF;
+  color: #fff;
+}
+
+.btn:focus {
+  background: #8052FF;
+  color: #fff;
+}
+
+/*Стили шапки*/
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 40px;
+  background-color: #fff;
+  box-shadow: 0px 9.03012px 27.0904px rgba(176, 190, 197, 0.32), 0px 3.38629px 5.64383px rgba(176, 190, 197, 0.32)
+}
+
+.logo {
+  margin-right: 50px;
+}
+
+.search {
+  width: 580px;
+  height: 44px;
+  padding: 12px 16px;
+  border: 1px solid rgba(51, 51, 51, 0.2);
+  color: #B0B0B0
+}
+/*Стили индикатора загрузки*/
+.indicator {
+  position: absolute;
+  display: block;
+  top: calc(50% - 80px);
+  left: calc(50% - 80px);;
+  width: 80px;
+  height: 80px;
+  background-image: url('../img/dow.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: spiner 1.5s ease-in-out infinite;
+}
+
+@keyframes spiner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.indicatorOff {
+  display: none;
+}
+
+/*Стили основного контента*/
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 0 90px;
+}
+
+.heading {
+  margin: 0;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.table {
+  display: block;
+  position: relative;
+  margin-bottom: 40px;
+  font-size: 0;
+}
+
+.trTable {
+  display: inline-block;
+  position: relative;
+  padding: 8px 20px;
+}
+
+.thTable {
+  display: inline-block;
+  font-size: 12px;
+  text-align: start;
+  color: #B0B0B0;
+}
+
+.thTableHover {
+  cursor: pointer;
+  transition: color .2s ease-in-out;
+}
+
+.thTableHover:hover {
+  color: #333;
+}
+
+.bodyTable {
+  position: relative;
+  display: block;
+  min-height: 304px;
+  background-color: #fff;
+  z-index: 20;
+}
+
+.headTable {
+  background-color: #F5F5F5;
+  border: none;
+  z-index: 1;
+}
+
+.btnAddClient {
+  display: flex;
+  align-content: flex-end;
+  align-self: center;
+  padding: 12.5px 26.5px;
+  border: 1px solid #9873FF;
+  color: #9873FF;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  background: none;
+}
+
+.btnAddClient > div {
+  display: block;
+  width: 22px;
+  height: 16px;
+  margin-right: 10px;
+  background-image: url('../img/addClient.svg');
+  transition: background-image .2s ease-in-out;
+}
+
+.btnAddClient:hover > div {
+  background-image: url('../img/addClientFocus.svg');
+}
+
+.btnAddClient:focus > div {
+  background-image: url('../img/addClientFocus.svg');
+}
+
+/*стили каждого элемента заголовка таблицы*/
+.thID {
+  width: 130px;
+}
+
+.thName {
+  width: 330px;
+}
+
+.thDateAdd,
+.thDateEdit {
+  width: 185px;
+}
+
+.thContact {
+  width: 150px;
+}
+
+.imgSort {
+  padding-left: 3px;
+}
+
+/*стили состояний активного столбца при сортировке*/
+
+.thActive {
+  color: #9873FF;
+}
+
+.imgSortActive {
+  padding-right: 3px;
+  transform: rotate(-180deg);
+}
+
+/*стили для формы модального окна */
+.containerModal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  pointer-events: auto;
+  opacity: 0;
+  z-index: -1;
+}
+
+.containerModalActive {
+  opacity: 1;
+  z-index: 1000;
+}
+
+.containerModalActive > .contentModal {
+  animation: openModal .4s ease-in-out;
+}
+
+@keyframes openModal {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.contentModal {
+  position: relative;
+  width: 450px;
+  max-height: 100vh;
+  padding-bottom: 25px;
+  background-color: #fff;
+  overflow: auto;
+  z-index: 10000;
+}
+
+.containerInput {
+  padding: 0 30px;
+}
+
+.headingModal {
+  display: inline-block;
+  padding-top: 24px;
+  padding-left: 30px;
+  margin: 0;
+  margin-right: 250px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.closeModal {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputModal {
+  width: 390px;
+  padding: 4px 0;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #C8C5D1;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.containerContacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 35px;
+  margin-bottom: 25px;
+  background-color: rgba(200, 197, 209, 0.3);
+}
+
+.addContact {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  background: none;
+  background-image: url('../img/add_circle_outline.svg');
+  background-repeat: no-repeat;
+  background-position: left center;
+  cursor: pointer;
+  transition: color .1s ease-in-out,
+              background-image .1s ease-in-out;
+}
+
+.addContact:hover {
+  color: #9873FF;
+  background-image: url('../img/addBtnHover.svg');
+}
+
+.addContactActive {
+  margin-bottom: 25px;
+}
+
+.imgAddClient {
+  position: absolute;
+  left: -13px;
+}
+
+.removeAddContact {
+  display: none;
+}
+
+.saveClient {
+  display: inline-block;
+  width: 150px;
+  padding: 12px 35px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  border: none;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  background: #9873FF;
+}
+
+.cancel {
+  display: block;
+  border: none;
+  margin: 0 auto;
+  font-size: 12;
+  color: #333;
+  text-decoration: underline;
+  background: none;
+  cursor: pointer;
+  transition: color .2s ease-in-out;
+}
+
+.cancel:hover {
+  color: #9873FF;
+}
+
+/*Стили формы изменения клиента*/
+.headingModalChange {
+  margin-right: 9px;
+}
+
+.idText {
+  display: inline;
+  margin-right: 125px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #B0B0B0;
+}
+
+.surnameText,
+.nameText,
+.secondnameText {
+  margin-bottom: 3px;
+  font-size: 11px;
+  line-height: 14px;
+  color: #B0B0B0;
+}
+
+
+/*Стили для формы удаления клиента*/
+
+.containerModalDelete {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  pointer-events: auto;
+  z-index: -1;
+  opacity: 0;
+}
+
+.containerModalDeleteActive {
+  z-index: 1000;
+  opacity: 1;
+}
+
+.containerModalDeleteActive > .contentModalDelete {
+  animation: openModal .4s ease-in-out;
+}
+
+.textModalDelete {
+  display: block;
+  width: 320px;
+  margin: 0;
+  margin-bottom: 25px;
+  padding-left: 110px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #333;
+  text-align: center;
+}
+
+.headingModalDelete {
+  padding-left: 143px;
+  margin-right: 127px;
+  margin-bottom: 9px;
+  text-align: center;
+}
+
+.btnModalDelete {
+  display: inline-block;
+  width: 150px;
+  padding: 12px 35px;
+  margin-left: 150px;
+  margin-bottom: 5px;
+  border: none;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  background: #9873FF;
+}
+
+/*классы ошибок валидации*/
+
+.error {
+  display: none;
+  width: 100%;
+  margin-bottom: 9px;
+  font-size: 12px;
+  text-align: center;
+  color: #f1502c;
+}
+
+.errorActive {
+  display: block;
+}
+
+.errorInput {
+  background-color: rgba(253, 27, 27, 0.301);
+  outline: 1px solid #f1502c;
+  outline-offset: 2px;
+}
+
+/*стилизуем контакты для формы*/
+
+.listContacts {
+  display: none;
+  width: 390px;
+  padding: 0;
+  margin: 25px 0;
+  list-style: none;
+}
+
+.listContactsActive {
+  display: block;
+}
+
+.itemList {
+  display: flex;
+  align-items: center;
+}
+
+.itemList:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.inputContact {
+  width: 241px;
+  height: 37px;
+  padding: 8px 12px;
+  border: 1px solid #C8C5D1;
+  border-left: none;
+  border-right: none;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  line-height: 19px;
+  background: none;
+}
+
+.btnCancel {
+  width: 27px;
+  height: 37px;
+  padding: 0 5px;
+  border: 1px solid #C8C5D1;
+  background-color: #E7E5EB;
+  background-image: url('../img/cancel.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: border .1s ease-in-out,
+              background-image .1s ease-in-out;
+}
+
+.btnCancel:hover {
+  border: 1px solid #F06A4D;
+  background-image: url('../img/cancelHover.svg');
+}
+
+.listSelect {
+  display: block;
+  position: absolute;
+  width: 123px;
+  padding: 0;
+  list-style: none;
+  border: 1px solid #C8C5D1;
+  border-top: none;
+  font-size: 12px;
+  line-height: 16px;
+  color: #333;
+  background: #F4F3F6;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity .2s ease-in-out;
+}
+
+.activeList {
+  z-index: 10;
+  opacity: 1;
+}
+
+.itemSelect {
+  padding: 7px 12px;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+
+.itemSelect:hover {
+  background: #E7E5EB;
+}
+
+.selectContact {
+  width: 123px;
+  height: 37px;
+  padding: 10px 12px;
+  border: 1px solid #C8C5D1;
+  font-size: 12px;
+  line-height: 16px;
+  color: #333;
+  background: #E7E5EB;
+  cursor: pointer;
+}
+
+.containerSelect {
+  position: relative;
+}
+
+.imgSelect {
+  position: absolute;
+  top: 13px;
+  right: 8px;
+}
+
+.activeImg {
+  transform: rotate(180deg);
+}
+
+/*стилизуем строку таблицы*/
+
+.itemListClient {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(200, 197, 209, .5);
+}
+
+.tbTable {
+  display: inline-block;
+}
+
+.id {
+  width: 130px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #B0B0B0;
+}
+
+.name {
+  width: 330px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #333;
+}
+
+.dateCreate,
+.dateUpdated {
+  width: 185px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #333;
+}
+
+.spanTime {
+  padding-left: 7px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #B0B0B0;
+}
+
+.divContact {
+  display: inline-block;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: background-color .2s ease-in-out;
+}
+
+.divContact:hover {
+  background-color: rgba(69, 8, 253, 0.404);
+}
+
+.contactTel {
+  background-image: url('../img/phone.svg');
+}
+
+.contactFace {
+  background-image: url('../img/fb.svg');
+}
+
+.contactMail {
+  background-image: url('../img/mail.svg');
+}
+
+.contactVk {
+  background-image: url('../img/vk.svg');
+}
+
+.contactOther {
+  background-image: url('../img/otherContact.svg');
+}
+
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 160px;
+  z-index: 1;
+}
+
+.divContact:not(:nth-child(5n)) {
+  margin-right: 7px;
+}
+
+.divContact:not(:nth-child(1n+6)) {
+  margin-bottom: 7px;
+}
+
+.toolContact {
+  display: block;
+  position: absolute;
+  width: 150px;
+  bottom: -1000px;
+  left: -67px;
+  padding: 8px 14px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #fff;
+  background: #333333;
+  opacity: 0;
+  transition: opacity .2s ease-in-out;
+  z-index: 10;
+}
+
+.toolContact::before {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: -8px;
+  left: calc(50% - 8px);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #333333;
+  transform: rotate(180deg);
+}
+
+.divContact:hover > .toolContact {
+  bottom: 25px;
+  opacity: 1;
+}
+
+.actions {
+  display: flex;
+}
+
+.btnChange {
+  position: relative;
+  margin-right: 10px;
+  padding: 0;
+  padding-left: 16px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #333;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color .2s ease-in-out,
+              background-image .1s ease-in-out;
+}
+
+.btnChange::before{
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background-image: url('../img/edit-btn.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btnChange:hover {
+  color: #9873FF;
+}
+
+.btnChangeActive::before {
+  color: #9873FF;
+  background-image: url('../img/changeDow.svg');
+  animation: changeSpiner 1.5s ease-in-out infinite;
+}
+
+@keyframes changeSpiner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btnDelete {
+  position: relative;
+  padding: 0;
+  padding-left: 16px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #333;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color .2s ease-in-out,
+              background-image .1s ease-in-out;
+}
+
+.btnDelete:hover {
+  color: #F06A4D;
+}
+
+.btnDelete::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background-image: url('../img/cancel-btn.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btnDeleteActive::before {
+  color: #9873FF;
+  background-image: url('../img/deleteDow.svg');
+  animation: changeSpiner 1.5s ease-in-out infinite;
+}
+
+.containerContact {
+  width: 120px;
+}
+
+
